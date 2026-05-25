@@ -1,5 +1,7 @@
 # HR Recruiting Screening Skill
 
+[简体中文](./README.md) | English
+
 A portable AI Agent skill for HR teams, hiring managers, and technical interviewers.
 
 It screens PDF resumes against a job description, ranks candidates with a 100-point scoring model, explains candidate fit, and generates tailored interview focus areas, questions, reference answer points, follow-up probes, and risk signals.
@@ -224,4 +226,3 @@ Sample output:
 ## License
 
 MIT
-

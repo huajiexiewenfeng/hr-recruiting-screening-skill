@@ -1,5 +1,7 @@
 # HR Recruiting Screening Skill
 
+简体中文 | [English](./README.en.md)
+
 一个面向 HR、招聘负责人和技术面试官的通用 AI Agent 招聘筛选技能。
 
 它可以根据岗位 JD 批量分析 PDF 简历，按 100 分制给候选人排序，解释得分原因，并为选中的候选人生成定制化面试重点、面试题、参考答案、追问和风险信号。
