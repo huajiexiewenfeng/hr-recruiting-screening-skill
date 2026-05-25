@@ -2,9 +2,9 @@
 
 [简体中文](./README.md) | English
 
-A portable AI Agent skill for HR teams, hiring managers, and technical interviewers.
+A portable AI Agent skill pack for HR teams, hiring managers, and technical interviewers.
 
-It screens PDF resumes against a job description, ranks candidates with a 100-point scoring model, explains candidate fit, and generates tailored interview focus areas, questions, reference answer points, follow-up probes, and risk signals.
+It contains three separate skills: resume screening, candidate detail reporting, and interview question generation. It screens PDF resumes against a job description, ranks candidates with a 100-point scoring model, explains candidate fit, and generates tailored interview focus areas, questions, reference answer points, follow-up probes, and risk signals.
 
 The default README is Chinese. This English version is provided for cross-team and open-source usage.
 
@@ -40,7 +40,13 @@ It does not:
 
 ```text
 .
-├── SKILL.md
+├── skills/
+│   ├── hr-resume-screening/
+│   │   └── SKILL.md
+│   ├── hr-candidate-detail-report/
+│   │   └── SKILL.md
+│   └── hr-interview-question-generator/
+│       └── SKILL.md
 ├── scripts/
 │   ├── extract_resumes.py
 │   └── requirements.txt
@@ -52,6 +58,20 @@ It does not:
     ├── sample-jd.md
     └── sample-output.md
 ```
+
+## The Three Skills
+
+### `hr-resume-screening`
+
+First-stage screening. Read the JD and resumes, analyze PDF resumes in batch, rank candidates with a 100-point score, and produce an interview recommendation list.
+
+### `hr-candidate-detail-report`
+
+Candidate detail reporting. Explain score reasons, strengths, weaknesses, education and major, company background, stability, risks, and interview verification points.
+
+### `hr-interview-question-generator`
+
+Interview preparation. Generate candidate-specific interview focus areas, questions, reference answer points, follow-up probes, and rejection signals.
 
 ## Quick Start
 
@@ -66,7 +86,10 @@ npx skills add huajiexiewenfeng/hr-recruiting-screening-skill
 You can also install it manually by placing this repository under a project skill directory, for example:
 
 ```text
-.agents/skills/hr-recruiting-screening/
+.agents/skills/
+  hr-resume-screening/
+  hr-candidate-detail-report/
+  hr-interview-question-generator/
 ```
 
 ### 2. Install Script Dependencies
@@ -107,13 +130,19 @@ output/hr-resume-extracts/
 Example prompt:
 
 ```text
-Use the hr-recruiting-screening skill. Based on this JD and the extracted resumes in output/hr-resume-extracts, rank candidates, score them out of 100, recommend interview candidates, and explain the scoring reasons.
+Use the hr-resume-screening skill. Based on this JD and the extracted resumes in output/hr-resume-extracts, rank candidates, score them out of 100, and recommend interview candidates.
+```
+
+Candidate detail report:
+
+```text
+Use the hr-candidate-detail-report skill. Explain the score reasons, strengths, weaknesses, risk points, and interview verification points for these candidates.
 ```
 
 Interview generation:
 
 ```text
-Use the hr-recruiting-screening skill. For selected candidates A, B, and C, generate interview focus areas, interview questions, reference answer points, follow-up probes, and rejection signals.
+Use the hr-interview-question-generator skill. For selected candidates A, B, and C, generate interview focus areas, interview questions, reference answer points, follow-up probes, and rejection signals.
 ```
 
 ## Scoring Model
@@ -194,15 +223,15 @@ Do not screen based on protected attributes such as gender, ethnicity, marital s
 
 ### Codex
 
-Place this repository under `.agents/skills/hr-recruiting-screening/`, or let Codex read this repository's `SKILL.md`.
+Copy the three skills under `skills/` into your project's `.agents/skills/` directory, or install with `npx skills add huajiexiewenfeng/hr-recruiting-screening-skill`.
 
 ### Cursor
 
-Use `SKILL.md`, `references/`, and `scripts/` as project rules and tools.
+Use `skills/`, `references/`, and `scripts/` as project rules and tools.
 
 ### WorkBuddy Or Other Agents
 
-Any agent that can read Markdown and run Python scripts can follow the workflow in `SKILL.md`.
+Any agent that can read Markdown and run Python scripts can follow the workflows in the three `SKILL.md` files.
 
 ## Examples
 

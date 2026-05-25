@@ -2,9 +2,9 @@
 
 简体中文 | [English](./README.en.md)
 
-一个面向 HR、招聘负责人和技术面试官的通用 AI Agent 招聘筛选技能。
+一个面向 HR、招聘负责人和技术面试官的通用 AI Agent 招聘筛选技能包。
 
-它可以根据岗位 JD 批量分析 PDF 简历，按 100 分制给候选人排序，解释得分原因，并为选中的候选人生成定制化面试重点、面试题、参考答案、追问和风险信号。
+它包含三个独立技能：简历筛选排序、人员明细报告、面试题生成。可以根据岗位 JD 批量分析 PDF 简历，按 100 分制给候选人排序，解释得分原因，并为选中的候选人生成定制化面试重点、面试题、参考答案、追问和风险信号。
 
 这个技能不绑定特定 Agent，可用于 Codex、Cursor、WorkBuddy 或其他支持读取 Markdown 技能文件和运行 Python 脚本的 AI 工作流。
 
@@ -40,7 +40,13 @@
 
 ```text
 .
-├── SKILL.md
+├── skills/
+│   ├── hr-resume-screening/
+│   │   └── SKILL.md
+│   ├── hr-candidate-detail-report/
+│   │   └── SKILL.md
+│   └── hr-interview-question-generator/
+│       └── SKILL.md
 ├── scripts/
 │   ├── extract_resumes.py
 │   └── requirements.txt
@@ -52,6 +58,20 @@
     ├── sample-jd.md
     └── sample-output.md
 ```
+
+## 三个技能
+
+### `hr-resume-screening`
+
+用于第一轮筛选：读取 JD 和简历，批量分析 PDF，输出候选人 100 分制排序、推荐面试名单和初步风险点。
+
+### `hr-candidate-detail-report`
+
+用于人员明细报告：解释每位候选人的得分原因、优势、短板、学历专业、公司背景、稳定度和面试验证点。
+
+### `hr-interview-question-generator`
+
+用于面试准备：针对已选候选人生成定制化面试重点、面试题、参考答案、追问和淘汰信号。
 
 ## 快速开始
 
@@ -66,7 +86,10 @@ npx skills add huajiexiewenfeng/hr-recruiting-screening-skill
 如果需要安装到当前项目，也可以手动把本仓库放到项目的技能目录，例如：
 
 ```text
-.agents/skills/hr-recruiting-screening/
+.agents/skills/
+  hr-resume-screening/
+  hr-candidate-detail-report/
+  hr-interview-question-generator/
 ```
 
 ### 2. 安装脚本依赖
@@ -107,13 +130,19 @@ output/hr-resume-extracts/
 把 JD 和抽取结果交给 Agent，并要求使用本技能。例如：
 
 ```text
-请使用 hr-recruiting-screening 技能，根据这个 JD 和 output/hr-resume-extracts 里的简历抽取结果，对候选人排序，输出 100 分制评分、推荐面试名单和每个人的得分原因。
+请使用 hr-resume-screening 技能，根据这个 JD 和 output/hr-resume-extracts 里的简历抽取结果，对候选人排序，输出 100 分制评分和推荐面试名单。
+```
+
+生成人员明细：
+
+```text
+请使用 hr-candidate-detail-report 技能，解释这些候选人的得分原因、优势、短板、风险点和面试验证重点。
 ```
 
 生成面试题：
 
 ```text
-请使用 hr-recruiting-screening 技能，针对已选候选人 A、B、C，生成面试重点、面试题、参考答案、追问和淘汰信号。
+请使用 hr-interview-question-generator 技能，针对已选候选人 A、B、C，生成面试重点、面试题、参考答案、追问和淘汰信号。
 ```
 
 ## 评分模型
@@ -194,15 +223,15 @@ output/hr-resume-extracts/
 
 ### Codex
 
-把本仓库放到项目的 `.agents/skills/hr-recruiting-screening/` 目录，或让 Codex 读取本仓库的 `SKILL.md`。
+把本仓库的 `skills/` 下三个技能复制到项目的 `.agents/skills/` 目录，或通过 `npx skills add huajiexiewenfeng/hr-recruiting-screening-skill` 安装。
 
 ### Cursor
 
-可以将 `SKILL.md`、`references/` 和 `scripts/` 放入项目中，作为规则文档和工具脚本使用。
+可以将 `skills/`、`references/` 和 `scripts/` 放入项目中，作为规则文档和工具脚本使用。
 
 ### WorkBuddy 或其他 Agent
 
-只要 Agent 能读取 Markdown 文档并运行 Python 脚本，即可按 `SKILL.md` 中的流程使用。
+只要 Agent 能读取 Markdown 文档并运行 Python 脚本，即可按三个 `SKILL.md` 中的流程使用。
 
 ## 示例 JD
 
