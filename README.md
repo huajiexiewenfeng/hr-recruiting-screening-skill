@@ -53,7 +53,21 @@
 
 ## 快速开始
 
-### 1. 安装依赖
+### 1. 安装 Skill
+
+如果你的 Agent 环境支持 `skills` CLI，可以直接安装：
+
+```bash
+npx skills add huajiexiewenfeng/hr-recruiting-screening-skill
+```
+
+如果需要安装到当前项目，也可以手动把本仓库放到项目的技能目录，例如：
+
+```text
+.agents/skills/hr-recruiting-screening/
+```
+
+### 2. 安装脚本依赖
 
 ```bash
 pip install -r scripts/requirements.txt
@@ -61,7 +75,7 @@ pip install -r scripts/requirements.txt
 
 如果你的环境已经安装了 `pypdf`，可以跳过这一步。
 
-### 2. 抽取 PDF 简历文本
+### 3. 抽取 PDF 简历文本
 
 单个文件夹：
 
@@ -86,7 +100,7 @@ output/hr-resume-extracts/
 └── ...
 ```
 
-### 3. 让 AI Agent 使用技能分析
+### 4. 让 AI Agent 使用技能分析
 
 把 JD 和抽取结果交给 Agent，并要求使用本技能。例如：
 
@@ -212,4 +226,3 @@ output/hr-resume-extracts/
 ## License
 
 MIT
-
